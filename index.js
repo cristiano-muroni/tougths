@@ -5,6 +5,7 @@ const FileStore = require('session-file-store')(session);
 const flash = require('express-flash');
 const conn = require('./db/conn');
 
+
 const app = express();
 
 //template engine
@@ -17,6 +18,10 @@ app.use(express.static('public'));
 //body response
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+//models
+const Tought = require('./models/Tought');
+const User = require('./models/User');
 
 //session middleware
 app.use(session({
@@ -43,12 +48,22 @@ app.use((req, res, next) => {
     res.locals.session = req.session
   }
   next();
-})
+});
+
+//import routes
+const toughtsRoutes = require('./routes/toughtsRoutes');
+const ToughtController = require('./controllers/ToughtController');
+
+//routes
+app.use('toughts', toughtsRoutes);
+
+//import controller
+app.get('/', ToughtController.showToughts);
 
 
 // connect database
 conn
-  .sync()
+  .sync()//{force: true}
   .then(() => {
     app.listen(3000);
   })
