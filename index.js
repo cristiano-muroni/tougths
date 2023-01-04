@@ -53,9 +53,11 @@ app.use((req, res, next) => {
 //import routes
 const toughtsRoutes = require('./routes/toughtsRoutes');
 const ToughtController = require('./controllers/ToughtController');
+const authRoutes = require('./routes/authRoutes');
 
 //routes
 app.use('toughts', toughtsRoutes);
+app.use('/', authRoutes);
 
 //import controller
 app.get('/', ToughtController.showToughts);
