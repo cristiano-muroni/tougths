@@ -23,7 +23,6 @@ module.exports = class AuthController {
       res.render("auth/register");
       return;
     }
-
     //create password
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = bcrypt.hashSync(password, salt);
@@ -36,7 +35,6 @@ module.exports = class AuthController {
     try {
       const createdUser = await User.create(user);
       console.log(user)
-
       //initialize session
       req.session.userid = createdUser.id;
       req.flash("message", "Cadastro realizado com sucesso!");
@@ -47,5 +45,10 @@ module.exports = class AuthController {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  static async logout(req, res) {
+    req.session.destroy();
+    res.redirect('/login');
   }
 };
