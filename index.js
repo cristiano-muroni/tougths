@@ -66,7 +66,7 @@ app.get('/', ToughtController.showToughts);
 
 // connect database
 conn
-  .sync()//{force: true}
+  .sync()
   .then(() => {
     app.listen(3000);
   })
