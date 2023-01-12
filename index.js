@@ -57,7 +57,7 @@ const ToughtController = require('./controllers/ToughtController');
 const authRoutes = require('./routes/authRoutes');
 
 //routes
-app.use('toughts', toughtsRoutes);
+app.use('/toughts', toughtsRoutes);
 app.use('/', authRoutes);
 
 //import controller
