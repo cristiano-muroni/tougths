@@ -116,6 +116,54 @@ form input[type='submit']:hover,
     color: #fff;
 }
 
+/*Create and edit form*/
+.tought-form-container a {
+    color: #f6982d;
+}
+
+.tought-form-container a:hover {
+    color: #fff;
+}
+
+.tought-form-container h1{
+    margin: 1em 0;
+    color: #fff;
+    border-left: 4px solid #f6982d;
+    padding: 0.5em;
+}
+
+.tought-form-container form {
+    max-width: 30%;
+    margin-top: 1.5em;
+}
+/*Dashboard*/
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5em;
+}
+
+.title-container h2 {
+    border-left: 4px solid #f6982d;
+    padding: 10px;
+}
+
+.title-container h3 {
+    margin-bottom: 1.5em;    
+}
+
+.dashboard ul {
+    list-style: none;    
+}
+
+.dashboard li {
+    padding: 12px;
+    border-bottom: 1px solid #f6982d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 /*footer*/
 footer {
     height: 150px;
