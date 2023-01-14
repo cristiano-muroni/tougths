@@ -41,4 +41,21 @@ module.exports = class ToughtController {
       console.log(error);
     }
   }
+
+  static async removeTought(req, res) {
+    try {
+      const id = req.body.id;
+      const UserId = req.session.userid;
+      await Tought.destroy({where: { id:id, userId: UserId } });
+
+      req.flash('message', 'Pensamento removido com sucesso');
+
+      req.session.save(() => {
+        res.redirect('/toughts/dashboard');
+      })
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
 };
