@@ -7,19 +7,21 @@ module.exports = class ToughtController {
   }
 
   static async dashboard(req, res) {
-    const UserId = req.session.userid;
+    const UserId = req.session.userid;   
+    console.log(`HERE: ${UserId}`)
     const user = await User.findOne({
       where: { id: UserId },
       include: Tought,
       plain: true,
-    });
-
-    if (!user) {
-      res.redirect("/login");
-    }
+    });        
     const toughts = user.Toughts.map(result => result.dataValues);
-    console.log(toughts)
-    res.render("toughts/dashboard", {toughts});
+    let emptyToughts = false;
+    if(toughts.length === 0) {
+      emptyToughts = true;
+    }
+    console.log(toughts.length)
+    res.render("toughts/dashboard", {toughts, emptyToughts});
+    return
   };
 
   static createTought(req, res) {
