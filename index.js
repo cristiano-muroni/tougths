@@ -4,6 +4,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const flash = require('express-flash');
 const conn = require('./db/conn');
+require('dotenv').config();
 
 
 
@@ -19,6 +20,8 @@ app.use(express.static('public'));
 //body response
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const port = process.env.PORT || 3000;
 
 //models
 const Tought = require('./models/Tought');
@@ -68,6 +71,6 @@ app.get('/', ToughtController.showToughts);
 conn
   .sync()
   .then(() => {
-    app.listen(3000);
+    app.listen(port);
   })
   .catch(err => console.log(err))
